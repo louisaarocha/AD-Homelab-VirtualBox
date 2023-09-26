@@ -3,6 +3,19 @@
 
 <br> 
 
+## Project Summary 
+This project encompassed two vital aspects of network administration and Active Directory management. In Part 1, a robust foundation was laid with the creation of a Domain Controller VM, Active Directory configuration, and the automation of user management through PowerShell. Client machines were seamlessly integrated into the domain, emphasizing the practical application of Active Directory skills. Part 2 delved into Group Policy administration, illustrating the efficient management of user and group accounts, precise folder sharing with secure permissions, computer account configuration, and strategic organizational unit structuring. Emphasis was placed on password security enforcement and the customization of user experiences through Group Policy settings. This project provided comprehensive insights into Active Directory management and Group Policy administration, fostering proficiency in network administration and IT management.
+
+## Skills Demonstrated 
+- Domain Controller setup
+- Active Directory configuration
+- PowerShell automation
+- Client machine integration
+- User and group management
+- Folder sharing and permissions
+- Organizational Unit structures
+- Group policy administration
+
 # Part 1: New User and Computer Accounts 
 
 ## Part 1: Project Summary 
