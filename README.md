@@ -3,7 +3,7 @@
 
 <br> 
 
-# Part 1: Active Directory using Oracle VirtualBox: New User and Computer Accounts 
+# Part 1: New User and Computer Accounts 
 
 ## Part 1: Project Summary 
 Part 1 of the project covers the creation of a Domain Controller VM, Active Directory configuration, network setup with RAS/NAT, DHCP server implementation, PowerShell automation for user management, and client-machine integration. 
@@ -20,20 +20,36 @@ Part 1 of the project covers the creation of a Domain Controller VM, Active Dire
 1. **Domain Controller VM Setup**
    - Create a Virtual Machine (VM) for the Domain Controller (Server 2019).
    - Configure IP addressing with 2 Network Interface Cards (NICs).
-   - Internet NIC: Automatically obtains an IP address from the home network.
-   - Internal NIC: Manually set up for internal network.
+      - Internet NIC: Automatically obtains an IP address from the home network.
+      - Internal NIC: Manually set up for internal network.
+
+<br>
+<p align="center">  
+   <img src="https://imgur.com/OqM8ufP.png" height="60%" width="60%" alt="Alt text" title="Create DC VM">
+     
+   <img src="https://imgur.com/e6ARIEc.png" height="60%" width="60%" alt="Alt text" title="Internet NIC">
+   
+   <img src="https://imgur.com/u7k9haI.png" height="60%" width="60%" alt="Alt text" title="Internal NIC">
+</p>
+<br>
 
 2. **Active Directory Installation and Configuration** 
-   - Install Active Directory Domain Services (AD DS). 
-   - Perform post-deployment configuration: create the domain.
-  
-3. **Create Administrative account**
-   - Note: Create our own dedicated admin account, instead of using the default admin account. 
+   - Name the server and install Active Directory Domain Services (AD DS) to create the domain.
+<br>
+<p align="center">  
+   <img src="https://imgur.com/KoGlObd.png" height="60%" width="60%" alt="Alt text" title="Install AD">
+
+   <img src="https://imgur.com/gJgafft.png" height="60%" width="60%" alt="Alt text" title="Create domain">
+</p>
+<br>
+
+3. **Create Administrative account** 
    - Establish a dedicated Domain Adminstrator account.
-   - Use: Active Directory Users and Computers 
+      - Note: Create my own dedicated admin account, instead of using the default admin account.
+   - Windows Administrative Tools -> Active Directory Users and Computers 
    - Create an Organizational Unit (OU) to organize administrative accounts.
-   - Create sub Organization Unit for users.
-   - Assign domain admin privileges to a specific user.
+      - Assign domain admin privileges to a specific user.
+   - Create sub Organization Unit for users. 
      
 <br>
 <p align="center">  
@@ -42,36 +58,59 @@ Part 1 of the project covers the creation of a Domain Controller VM, Active Dire
    <img src="https://imgur.com/shPT2Jt.png" height="60%" width="60%" alt="Alt text" title="Create new user">
    
    <img src="https://imgur.com/UDngEFQ.png" height="60%" width="60%" alt="Alt text" title="Assign domain admin privileges">
+
+   <img src="https://imgur.com/c4NnlQB.png" height="60%" width="60%" alt="Alt text" title="Sub OU for users">
 </p>
 <br>
 
 4. **Network Configuration: RAS/NAT**
    - Set up RAS/NAT (Remote Access Server/Network Address Translation) to enable private network clients to access the internet through the Domain Controller.
-   - Purpose: To allow Windows 10 clients to be on private virtual network and still be able to access the internet through the domain. 
+   - Purpose: To allow Windows 10 clients to be on a private virtual network and still be able to access the internet through the domain.
+     
+<br>
+<p align="center">      
+   <img src="https://imgur.com/oUejwvk.png" height="60%" width="60%" alt="Alt text" title="Configure routing">
+
+   <img src="https://imgur.com/n880MDm.png" height="60%" width="60%" alt="Alt text" title="Configure routing">
+</p>
+<br>
 
 5. **DHCP Server Set up** 
    - Set up DHCP server on the Domain Controller, allowing client computers to obtain IP addresses automatically.
+      - Range: 172.16.0.100-200
+      - Mask: 255.255.255.0
+      - Gateway: 172.168.0.1
+      - DNS: 172.16.0.1
    - Note: When AD DS is installed on the Domain Controller, it automatically installs DNS. Use DC as DNS server.  
    - Configure address lease durations and DHCP options, including DNS and gateway settings.
 
+<br>
+<p align="center">  
+   <img src="https://imgur.com/p8qrjOF.png" height="60%" width="60%" alt="Alt text" title="DHCP ">
+
+   <img src="https://imgur.com/AIShua9.png" height="60%" width="60%" alt="Alt text" title="Create domain">
+</p>
+<br>  
+
+6. **Setup complete** 
 <br>
 <p align="center">
    <img src="https://imgur.com/A6UUPaP.png" height="60%" width="60%" alt="Alt text" title="Set up complete">
 </p>
 <br>
 
-6. **PowerShell Automation:**
-   - Utilize a PowerShell script to automate the creation of a thousand new users in Active Directory.
+7. **PorShell Automation to create 1000 users in AD**
+   - Utilize a PorShell script to automate the creation of a thousand new users in Active Directory.
  
 <br>
 <p align="center">    
-   <img src="https://imgur.com/8JeS4C2.png" height="60%" width="60%" alt="Alt text" title="PowerShell Script">
+   <img src="https://imgur.com/8JeS4C2.png" height="60%" width="60%" alt="Alt text" title="PorShell Script">
    
    <img src="https://imgur.com/AndFlgx.png" height="60%" width="60%" alt="Alt text" title="Users in AD">
 </p>
 <br>
 
-7. **Client Machine Setup**
+8. **Client Machine Setup**
    - Create a second VM for a client computer running Windows 10.
    - Connect the client VM to the VirtualBox private network.
    - Rename client machine "Client1" and join it to the domain.
@@ -87,7 +126,7 @@ Part 1 of the project covers the creation of a Domain Controller VM, Active Dire
 </p>
 <br>
 
-8. **Client successfully added to domain!**
+9. **Client successfully added to domain!**
 
 <br>
 <p align="center">
@@ -112,7 +151,7 @@ Imagine this real-life scenario: You've just been hired, and your name has been 
 
 <br>
 
-# Part 2: Active Directory using Oracle VirtualBox: Group Policy 
+# Part 2: Group Policy 
 
 ## Part 2: Project Summary 
 Part 2 of the project focuses on managing an Active Directory environment, including user and group management, folder sharing, computer account configuration, organizational unit structuring, password security enforcement, and group policy administration.
@@ -151,6 +190,9 @@ Part 2 of the project focuses on managing an Active Directory environment, inclu
 
 3.  **Computer Account Configuration**
      - Successfully renamed a computer to 'Client2' and integrated it into the domain environment.
+        - Create a third VM for a client computer running Windows 10.
+        - Connect the client VM to the VirtualBox private network.
+        - Rename client machine "Client2" and join it to the domain.
 
 <br>
 <p align="center">
@@ -160,7 +202,7 @@ Part 2 of the project focuses on managing an Active Directory environment, inclu
 
 4.  **Organizational Unit (OU) Structure**
      - Strategically organized the Active Directory by creating OUs for the Atlanta office location, Atlanta users, and Atlanta computer accounts.
-     - Demonstrated proficiency in moving users, such as Bob Ross, from the Users container into specific OUs.
+     - Demonstrated proficiency in moving users, such as Bob Ross, from the "Users" container into specific OUs.
 
 <br>
 <p align="center">
@@ -194,4 +236,26 @@ Part 2 of the project focuses on managing an Active Directory environment, inclu
 </p>
 <br>
 
-   
+## Real-Life Scenario: Group Policy 
+
+### User and Group Management
+In a real-world scenario, I facilitated efficient user and group management by creating a new user, 'Bob Ross,' and establishing a dedicated 'Sales' group tailored to the sales department's needs. This streamlined user access, ensuring that team members like Bob had the appropriate permissions to collaborate effectively.
+
+### Folder Sharing and Permissions
+For enhanced data accessibility and security, I transformed the 'Sales Data' folder into a shared network resource. Leveraging precise permissions tailored to the 'Sales' group, I safeguarded sensitive data, illustrating the crucial role of Active Directory group policies in controlling access to critical resources.
+
+### Computer Account Configuration
+In a practical demonstration of domain integration, I seamlessly renamed a computer to 'Client2' and seamlessly integrated it into the domain environment. Additionally, I expanded the network by creating a third VM to represent a client computer running Windows 10. I took measures to ensure connectivity by connecting the client VM to the VirtualBox private network. The computer renaming process, along with joining it to the domain, exemplifies the real-life relevance of Active Directory in managing organizational resources.
+
+### Organizational Unit (OU) Structure
+In a corporate setting, I strategically organized our Active Directory by establishing Organizational Units (OUs) tailored to the Atlanta office location, Atlanta users, and Atlanta computer accounts. This pragmatic approach allowed us to efficiently manage users like Bob Ross, moving them from the default "Users" container to specific OUs, aligning with their roles and locations.
+
+### Password Security
+Adhering to industry best practices, I bolstered password security by implementing policies that required Bob Ross to reset his password upon initial login. This real-world security measure aligns with the broader objective of safeguarding sensitive information and user accounts.
+
+### Group Policy Administration
+Our practical application of the Group Policy extended to customizing wallpaper and power settings for Atlanta users. This hands-on experience underscores the significance of Group Policy in managing and optimizing user experiences within an organization, emphasizing its real-life relevance in day-to-day IT administration.
+
+
+
+
