@@ -99,8 +99,8 @@ Part 1 of the project covers the creation of a Domain Controller VM, Active Dire
 </p>
 <br>
 
-7. **PorShell Automation to create 1000 users in AD**
-   - Utilize a PorShell script to automate the creation of a thousand new users in Active Directory.
+7. **PowerShell Automation to create 1000 users in AD**
+   - Utilize a PowerShell script to automate the creation of a thousand new users in Active Directory.
  
 <br>
 <p align="center">    
